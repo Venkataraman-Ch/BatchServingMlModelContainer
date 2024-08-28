@@ -43,6 +43,6 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}  # Use secrets for sensitive information
         run: |
           # Add your deployment script here
-          # echo "Deploying to production..."
+          echo "Deploying to production..."
           # For example, use a deployment CLI or API
-          # ./deploy.sh
+          ./deploy.sh
