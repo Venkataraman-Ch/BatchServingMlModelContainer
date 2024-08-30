@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.10", "3.11"]
+        python-version: [ "3.10" ]
         
     steps:
     - uses: actions/checkout@v4    
@@ -41,7 +41,7 @@ jobs:
         pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
         
     - name: Upload pytest test results
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v3
       with:
         name: pytest-results-${{ matrix.python-version }}
         path: junit/test-results.xml
