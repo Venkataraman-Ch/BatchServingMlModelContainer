@@ -20,6 +20,10 @@ jobs:
         
     steps:
     - uses: actions/checkout@v4    
+    - name: Set environment variable
+      run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV    
+    - name: Run a script
+      run: node -e 'console.log(process.env.FORCE_JAVASCRIPT_ACTIONS_TO_NODE20)'      
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
