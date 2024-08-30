@@ -1,0 +1,19 @@
+{
+    "name": "BatchServingMlModelContainer",
+    "description": "Test package",
+    "version": "1.0.0",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Venkataraman-Ch/BatchServingMlModelContainer"
+    },
+    "keywords": [],
+    "author": "Venkataraman Chilukuri",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/Venkataraman-Ch/BatchServingMlModelContainer/my_package/issues"
+    },
+    "homepage": "https://github.com/Venkataraman-Ch/BatchServingMlModelContainer/my_package"
+  }
