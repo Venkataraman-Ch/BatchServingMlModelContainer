@@ -3,3 +3,6 @@ scipy
 pandas
 scikit-learn
 joblib
+pytest 
+pytest-cov
+
