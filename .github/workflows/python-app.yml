@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.10" ]
-        
+        python-version: [ "3.10", "3.11" ]  # Specify the version of Python (or) set of versions.)
+        cache: 'pip'  # Enable pip caching
     steps:
     - uses: actions/checkout@v4    
     - name: Set environment variable
