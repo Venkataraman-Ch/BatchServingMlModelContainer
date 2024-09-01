@@ -4,11 +4,12 @@
 name: Python application CI pytest and upload artifacts.
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  #push:
+  #branches: [ "main" ]
+  #pull_request:
+  #branches: [ "main" ]
+  workflow_dispatch:  # Allows manual triggering of the workflow
+  
 permissions:
   contents: read
 jobs:
