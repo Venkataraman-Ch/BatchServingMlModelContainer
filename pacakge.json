@@ -11,9 +11,5 @@
     },
     "keywords": [],
     "author": "Venkataraman Chilukuri",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/Venkataraman-Ch/BatchServingMlModelContainer/my_package/issues"
-    },
-    "homepage": "https://github.com/Venkataraman-Ch/BatchServingMlModelContainer/my_package"
+    "license": "MIT"
   }
