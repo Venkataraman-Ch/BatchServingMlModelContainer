@@ -1,18 +1,41 @@
-name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Log in to Amazon ECR
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 939794682570.dkr.ecr.us-east-1.amazonaws.com
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
+      - name: Build Docker image
+        run: docker build -t venkat_eeg_model_container.
+
+      - name: Tag Docker image
+        run: docker tag venkat_eeg_model_container:latest 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
+
+      - name: Push Docker image to ECR
+        run: docker push 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
+
+  #deploy:
+  #  needs: build
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Deploy to ECS
+  #      run: |
+  #        aws ecs update-service --cluster <cluster-name> --service <service-name> --force-new-deployment
+  #      env:
+  #        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
