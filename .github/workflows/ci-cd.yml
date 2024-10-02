@@ -9,6 +9,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build Docker image
+        run: docker build -t venkat_eeg_model_container.
 
       - name: Log in to Amazon ECR
         run: |
@@ -16,10 +29,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
-      - name: Build Docker image
-        run: docker build -t venkat_eeg_model_container.
-
+          
       - name: Tag Docker image
         run: docker tag venkat_eeg_model_container:latest 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
 
