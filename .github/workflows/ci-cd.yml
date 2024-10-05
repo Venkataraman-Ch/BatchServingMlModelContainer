@@ -20,16 +20,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
+      - name: Log in to amazon ECR
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 939794682570.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+        env:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws-region: us-east-1  # Replace with your AWS region
+          aws_session_token: ${{secrets.AWS_SESSION_TOKEN}}          
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Verify AWS CLI access
         run: aws sts get-caller-identity
-
 
       - name: Build Docker image
         run: docker build -t venkat_eeg_model_container.
