@@ -22,11 +22,10 @@ jobs:
 
       - name: Log in to amazon ECR
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 939794682570.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 314146337751.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
         env:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_session_token: ${{secrets.AWS_SESSION_TOKEN}}          
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Verify AWS CLI access
