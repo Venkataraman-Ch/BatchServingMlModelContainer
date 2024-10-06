@@ -35,7 +35,7 @@ jobs:
   
       - name: Log in to amazon ECR
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 314146337751.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
         env:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
@@ -44,14 +44,14 @@ jobs:
       - name: Verify AWS CLI access
         run: aws sts get-caller-identity
 
-      - name: Build Docker image
-        run: docker build -t venkat_eeg_model_container.
+      #- name: Build Docker image
+      #  run: docker build -t venkat_eeg_model_container.
         
-      - name: Tag Docker image
-        run: docker tag venkat_eeg_model_container:latest 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
+      #- name: Tag Docker image
+      #  run: docker tag venkat_eeg_model_container:latest 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
 
-      - name: Push Docker image to ECR
-        run: docker push 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
+      #- name: Push Docker image to ECR
+      #  run: docker push 939794682570.dkr.ecr.us-east-1.amazonaws.com/venkat_eeg_model_container:latest
 
   #deploy:
   #  needs: build
